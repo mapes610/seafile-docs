@@ -38,6 +38,16 @@ Trouble shooting:
 
 Make sure you use "FastCGIExternalServer /var/www/seahub.fcgi -host 127.0.0.1:8000" in httpd.conf or apache2.conf, especially the "/var/www/seahub.fcgi" part.
 
+#### Error on Apache log: "FastCGI: comm with server "/var/www/seahub.fcgi" aborted: idle timeout (30 sec)"
+
+When accessing file history in huge libraries, you can get HTTP 500 Error.
+
+Solution:
+
+Change in httpd.conf or apache2.conf 
+from FastCGIExternalServer /var/www/seahub.fcgi -host 127.0.0.1:8000
+to FastCGIExternalServer /var/www/seahub.fcgi -host 127.0.0.1:8000 -idle-timeout 60
+
 #### Seafile with Apache / HTTPS has text only (no CSS formatting / images)
 
 The media folder (Alias location identified in /etc/apache2/sites-enabled/000-default (Ubuntu) has inappropriate permissions
